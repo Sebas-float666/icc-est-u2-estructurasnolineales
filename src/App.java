@@ -1,10 +1,24 @@
+import models.Persona;
 import structures.node.Node;
+import structures.trees.BinaryTree;
 import structures.trees.IntTree;
 
 public class App {
     public static void main(String[] args) throws Exception {
         runIntTree();
+        runBinaryTree();
     }
+
+    public static void runBinaryTree(){
+        BinaryTree<String> arbolStrings= new BinaryTree<>();
+        BinaryTree<Persona> arbolPersonas= new BinaryTree<>();
+        
+        arbolPersonas.add(new Persona("pablo",30));
+        arbolPersonas.add(new Persona("ana",30));
+        arbolPersonas.add(new Persona("luis",30));
+        arbolPersonas.add(new Persona("maria",30));
+    }
+
     
     public static void runIntTree(){
 
@@ -33,7 +47,7 @@ public class App {
         System.out.println("Postorden:");
         arbolNumero.posOrder();
 
-        System.out.println("Peso del árbol: ");
-        System.out.println(arbolNumero.peso());
+        System.out.println("Arbol Altura: "+arbolNumero.getHeight());
+        System.out.println("Peso: "+arbolNumero.getPeso());
     }
 }

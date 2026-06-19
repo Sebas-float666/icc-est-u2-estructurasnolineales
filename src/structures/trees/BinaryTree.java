@@ -1,45 +1,43 @@
 package structures.trees;
-
 import structures.node.Node;
+public class BinaryTree <T extends Comparable<T>> {
 
+    private Node <T> root;
 
-public class IntTree {
-    
-    private Node <Integer> root;
-
-    //Constructor
-
-    public IntTree(){
-        this.root = null;
-    }
-
-    public Node<Integer> getRoot() {
+    public Node<T> getRoot() {
         return root;
     }
-
-    public void setRoot(Node<Integer> root) {
+    public BinaryTree(){
+        this.root=null;
+    }
+    public BinaryTree(Node<T> root) {
         this.root = root;
     }
 
-    public void setRoot (Integer value){
-        Node<Integer> node = new Node<Integer>(value);
+    public void setRoot(Node<T> root) {
+        this.root = root;
+    }
+
+    public void setRoot(T value){
+        Node<T> node = new Node<T>(value);
         this.root = node;
     }
 
-    public void add (int value){
-        Node<Integer> node = new Node<Integer>(value);
+    public void add (T value){
+        Node<T> node = new Node<T>(value);
         root = addRecursivo (root, node);
 
     }
 
-    public Node<Integer> addRecursivo(
-        Node<Integer> actual, 
-        Node<Integer> nodeInsertar) {
+    public Node<T> addRecursivo(
+        Node<T> actual, 
+        Node<T> nodeInsertar) {
 
         if(actual == null) 
             return nodeInsertar;
 
-        if(actual.getValue() > nodeInsertar.getValue()){
+        //if(actual.getValue() > nodeInsertar.getValue()){
+        if (actual.getValue().compareTo(nodeInsertar.getValue())>0){
             actual.setLeft(addRecursivo(actual.getLeft(), nodeInsertar));
         } else {
             actual.setRight(addRecursivo(actual.getRight(), nodeInsertar));
@@ -55,7 +53,7 @@ public class IntTree {
         preOrdenRecursivo(root);
     }
 
-    private void preOrdenRecursivo(Node <Integer> actual){
+    private void preOrdenRecursivo(Node <T> actual){
         if (actual == null)
             return;
         System.out.println(actual);
@@ -70,7 +68,7 @@ public class IntTree {
         System.out.println();
     }
 
-    private void posOrdenRecursivo(Node <Integer> actual){
+    private void posOrdenRecursivo(Node <T> actual){
         if (actual == null)
             return;
         posOrdenRecursivo(actual.getLeft());
@@ -82,7 +80,7 @@ public class IntTree {
         inOrdenRecursivo(root);
     }
 
-    private void inOrdenRecursivo(Node<Integer> actual){
+    private void inOrdenRecursivo(Node<T> actual){
     if (actual == null)
         return;
 
@@ -95,7 +93,7 @@ public class IntTree {
         return getHeightRecursivo(root);
     }
 
-    private int getHeightRecursivo(Node<Integer> actual){
+    private int getHeightRecursivo(Node<T> actual){
     if (actual == null)
         return 0;
     int heightLeft = getHeightRecursivo(actual.getLeft());
@@ -110,7 +108,7 @@ public class IntTree {
         return getPesoRecursivo(root);
     }
 
-    private int getPesoRecursivo(Node<Integer> actual) {
+    private int getPesoRecursivo(Node<T> actual) {
     if (actual == null)
         return 0;
     int heightLeft = getHeightRecursivo(actual.getLeft());
@@ -121,3 +119,4 @@ public class IntTree {
 
 
 }
+
