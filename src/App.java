@@ -1,5 +1,11 @@
+import collections.maps.Maps;
+import collections.set.Sets;
+import evaluacion.Persona;
+import evaluacion.PersonaController;
+import java.util.ArrayList;
 import java.util.List;
-import models.Persona;
+import java.util.Set;
+import models.Contacto;
 import structures.node.Node;
 import structures.trees.BinaryTree;
 import structures.trees.Ejercicio1;
@@ -11,17 +17,83 @@ import structures.trees.IntTree;
 public class App {
     public static void main(String[] args) throws Exception {
         runIntTree();
-        runBinaryTree();
+        // runBinaryTree();
         runEjercicios();
+
+        runSets();
         
     }
 
-   
+    
+    private static void runSets() {
+        Sets sets = new Sets();
+
+        //Implementacion -> HashSet hashcode
+
+        System.out.println("\n-------------HashCode-----------");
+        Set<String> hashSet = sets.construirHashSet();
+        System.out.println(hashSet);
+        System.out.println("Size = " + hashSet.size());
+        System.out.println(hashSet.contains("F"));
+
+        ArrayList<String> lis = new ArrayList<>();
+        lis.add("S");
+        System.out.println(lis);
+
+
+         System.out.println("\n-------------LinkedHashCode-----------");
+        Set<String> lSet = sets.LinkedHashSet();
+        System.out.println(lSet);
+        System.out.println("Size = " + lSet.size());
+        System.out.println(lSet.contains("F"));
+
+        System.out.println("\n-------------TreeSet-----------");
+        Set<String> tSet = sets.TreeSet();
+        System.out.println(tSet);
+        System.out.println("Size = " + tSet.size());
+        System.out.println(tSet.contains("F"));
+
+        System.out.println("\n-------------HashSet Contacto-----------");
+        Set<Contacto> hCSet = sets.construirHContacto();
+        System.out.println(hCSet);
+        System.out.println("Size = " + hCSet.size());
+
+        System.out.println("\n-------------TreeSet Contacto-----------");
+        Set<Contacto> thCSet = sets.construirTreeSetContacto();
+        System.out.println(thCSet);
+        System.out.println("Size = " + thCSet.size());
+        
+        System.out.println("\n-------------Mapa-----------");
+        Maps maps = new Maps();
+        maps.contruirHashMap();
+
+
+        System.out.println("\n-------------Ejercicio 1-----------");
+        List<Persona> personas = new ArrayList<>();
+
+        personas.add(new Persona("Juan Pérez", 25));
+        personas.add(new Persona("juan pérez", 25));
+        personas.add(new Persona("Ana", 30));
+        personas.add(new Persona("Carlos", 18));
+        personas.add(new Persona("Luis", 40));
+
+        PersonaController controller = new PersonaController();
+
+        Set<Persona> resultado = controller.filtrarYOrdenar(personas, 20);
+
+        for (Persona p : resultado) {
+            System.out.println(p.getNombre() + " - " + p.getEdad());
+        }
+    }
+
+
     private static void runEjercicios(){
+        // ----------------------------
         Ejercicio1 ejercicio1 = new Ejercicio1();
         int[] numeros = new int[]{5,3,7,2,4,6,8};
         ejercicio1.insert(numeros);
         
+        // ---------------------------
         Ejercicio2 ejercicio2 = new Ejercicio2();
         int[] numeros2 = new int[] {5,3,7,2,4,6,8};
 
@@ -32,6 +104,7 @@ public class App {
         Node<Integer> root = arbol.getRoot();
         ejercicio2.invertTree(root);
 
+        // ---------------------------------
         Ejercicio3 ejercicio3 = new Ejercicio3();
         
         int[] numeros3 = new int[]{4,2,7,1,3,6,9};
@@ -44,7 +117,7 @@ public class App {
 
         List<List<Node<Integer>>> niveles = ejercicio3.listLevels(arbolEjercicio3.getRoot());
 
-        System.out.println("\n********Ejercicio 3*********");
+        System.out.println("\n------------Ejercicio 3-----------");
 
             for (List<Node<Integer>> nivel : niveles) {
                 for (Node<Integer> nodo : nivel) {
@@ -53,6 +126,7 @@ public class App {
                 System.out.println();
             }
 
+        //--------------------------------------
         Ejercicio4 ejercicio4 = new Ejercicio4();
        
 
@@ -67,7 +141,7 @@ public class App {
 
         int profundidad = ejercicio4.maxDepth(root4);
 
-         System.out.println("\n********Ejercicio 4*********");
+        System.out.println("\n------------Ejercicio 4-----------");
 
 
         System.out.println("Input:");
@@ -81,22 +155,12 @@ public class App {
         
     }
 
-     
-
-    private static void runBinaryTree() {
-        BinaryTree<String> arbolStrings = new BinaryTree<>();
-        BinaryTree <Persona> arbolPersonas = new BinaryTree<>();
-
-        arbolPersonas.add(new Persona("pablo", 30));
-        arbolPersonas.add(new Persona("ana", 25));
-        arbolPersonas.add(new Persona("luis", 35));
-        arbolPersonas.add(new Persona("maria", 28));
-    }
     
     public static void runIntTree(){
 
         
         IntTree arbolNumero = new IntTree();
+
 
         arbolNumero.add(50);
         arbolNumero.add(10);
